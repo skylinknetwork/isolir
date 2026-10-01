@@ -76,7 +76,8 @@
         .btn-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            align-items: center; /* MEMBUAT TOMBOL TETAP PAS DI TENGAH */
+            gap: 5px;
             margin-top: 15px;
         }
 
@@ -85,7 +86,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 15px;
+            padding: 10px 25px; /* PADDING ATAS-BAWAH & KIRI-KANAN */
             border-radius: 10px;
             font-weight: bold;
             font-size: 15px;
@@ -103,6 +104,8 @@
             background-color: #ff6000;
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(255, 96, 0, 0.3);
+            width: fit-content; /* MEMBUAT LEBAR TOMBOL PAS MENYESUAIKAN TEKS */
+            max-width: 80%;     /* BISA SAYANG UBAH ANGKA INI UNTUK TRIAL & ERROR LEBARNYA */
         }
 
         /* Modal Pop-up Pembayaran */
@@ -276,19 +279,20 @@
                 </div>
             </div>
 			
-			<div class="bank-info">
+            <!-- BRI -->
+            <div class="bank-info">
                 <img src="logo-bri.png" alt="BRI" class="bank-logo">
                 <div class="bank-details">
                     <div class="bank-name">BANK BRI</div>
                     <div class="bank-num">
-                        <span id="bniAcc">6421 0101 8930 532</span>
+                        <span id="briAcc">6421 0101 8930 532</span>
                         <button class="btn-copy" onclick="copyText('briAcc')">Salin</button>
                     </div>
                     <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 
-            <!-- DANA & GOPAY -->
+            <!-- DANA -->
             <div class="bank-info">
                 <img src="logo-dana.png" alt="DANA" class="bank-logo">
                 <div class="bank-details">
@@ -301,7 +305,8 @@
                 </div>
             </div>
 
-			<div class="bank-info">
+            <!-- GOPAY -->
+            <div class="bank-info">
                 <img src="logo-gopay.png" alt="GOPAY" class="bank-logo">
                 <div class="bank-details">
                     <div class="bank-name">GOPAY</div>
