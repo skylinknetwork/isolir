@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>WiFi Isolir</title>
+
     <style>
+        /* Pemanggilan Font Inter ExtraBold Khusus Title */
+        @font-face {
+            font-family: 'InterExtraBold';
+            src: url('Inter_18pt-ExtraBold.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Pemanggilan Font Inter SemiBold untuk Teks Lainnya */
+        @font-face {
+            font-family: 'InterLocal';
+            src: url('Inter_18pt-SemiBold.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'InterLocal', Arial, sans-serif;
         }
 
         body {
@@ -25,11 +42,11 @@
         .card {
             background: #ffffff;
             border: 4px solid #ffcc00;
-            border-radius: 12px;
-            padding: 25px 40px;  /* PATOKAN JARAK KIRI-KANAN TEKS KE BORDER (25px) */
-            width: fit-content;  /* KUNCI: LEBAR KOTAK OTOMATIS PAS MENYESUAIKAN TEKS */
-            max-width: 90%;      /* BATAS AMAN SUPAYA TIDAK MELEBIHI LAYAR HP */
-            margin-top: 6vh;     /* POSISI ATAS-BAWAH */
+            border-radius: 16px;
+            padding: 22px 18px;
+            width: fit-content;
+            max-width: 360px;
+            margin-top: 2vh;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             animation: popIn 0.5s ease-out;
@@ -40,19 +57,21 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
+        /* Title Menggunakan Font Inter ExtraBold */
         .title {
             color: #da251d;
-            font-size: 28px;
-            font-weight: 1200;
-            margin-bottom: 10px;
+            font-family: 'InterExtraBold', Arial, sans-serif;
+            font-size: 23px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            white-space: nowrap; /* MENGUNCI JUDUL AGAR TETAP RAPI 1 BARIS */
+            white-space: nowrap;
+            letter-spacing: 0.5px;
         }
 
         .logo-isolir {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 12px;
+            width: 65px;
+            height: 65px;
+            margin-bottom: 10px;
             animation: pulse 1s infinite;
         }
 
@@ -64,8 +83,7 @@
 
         .message-text {
             color: #111;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 15px;
             line-height: 1.3;
             margin-bottom: 15px;
         }
@@ -74,69 +92,10 @@
             color: #004a9f;
         }
 
-        /* Tombol Aksi */
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            margin-top: 15px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 18px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .btn:active {
-            transform: scale(0.96);
-        }
-
-        .btn-pay {
-            background-color: #ff6000;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(255, 96, 0, 0.3);
-            width: fit-content;
-            max-width: 100%;
-        }
-
-        /* Modal Pop-up Pembayaran */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 15px;
-        }
-
-        .modal-content {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 18px 15px;
-            width: 92%;
-            max-width: 340px;
-            text-align: center;
-            position: relative;
-        }
-
-        .modal-title {
-            color: #003a9a;
-            font-size: 17px;
-            margin-bottom: 12px;
+        /* Container List Rekening Bank */
+        .bank-container {
+            width: 100%;
+            margin-bottom: 8px;
         }
 
         /* Kartu Bank dengan Slot Logo di Kiri */
@@ -145,7 +104,7 @@
             border: 1px dashed #004a9f;
             border-radius: 10px;
             padding: 8px 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: left;
             display: flex;
             align-items: center;
@@ -153,8 +112,8 @@
         }
 
         .bank-logo {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             object-fit: contain;
             flex-shrink: 0;
             background-color: #ffffff;
@@ -165,61 +124,72 @@
 
         .bank-details {
             flex-grow: 1;
+            min-width: 0;
         }
 
-        /* Nama Bank: Bold & Biru */
+        /* Nama Bank: Biru */
         .bank-name {
             font-size: 11px;
             color: #004a9f;
-            font-weight: bold;
+            letter-spacing: 0.3px;
         }
 
         .bank-num {
-            font-size: 15px;
+            font-size: 14px;
             color: #111;
-            font-weight: bold;
-            margin: 2px 0;
+            margin-top: 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
 
-        /* Nama Pemilik Rekening: Bold & Merah */
-        .owner-name {
-            font-size: 12px;
-            color: #da251d;
-            font-weight: bold;
-            margin-top: 1px;
+        .num-text {
+            white-space: nowrap;
         }
 
+        /* Tombol Copy dengan Ikon SVG Mini */
         .btn-copy {
             background: #004a9f;
             color: #fff;
             border: none;
-            padding: 4px 8px;
+            padding: 5px 9px;
             font-size: 11px;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* Tombol Tutup: Hijau Sedang (#1e824c) */
-        .btn-close {
-            margin-top: 8px;
-            background: #1e824c;
-            color: #fff;
-            width: 100%;
-            padding: 9px;
-            border-radius: 8px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 14px;
             transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
         }
 
-        .btn-close:hover {
-            background: #196f3d;
+        .btn-copy:active {
+            background: #002d62;
+        }
+
+        .icon-copy {
+            width: 12px;
+            height: 12px;
+            stroke: #ffffff;
+        }
+
+        /* Styling Gambar Kontak & Skylink */
+        .img-kontak {
+            width: 180px;
+            max-width: 100%;
+            height: auto;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .img-skylink {
+            width: 220px;
+            max-width: 100%;
+            height: auto;
+            margin-top: 4px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -243,28 +213,20 @@
             agar internet kembali normal.
         </div>
 
-        <div class="btn-group">
-            <button class="btn btn-pay" onclick="openModal()">
-                Norek Pembayaran
-            </button>
-        </div>
-    </div>
-
-    <!-- POP-UP MODAL PEMBAYARAN -->
-    <div class="modal" id="payModal">
-        <div class="modal-content">
-            <h2 class="modal-title">Info Rekening Pembayaran</h2>
-            
+        <!-- LIST REKENING PEMBAYARAN LANGSUNG -->
+        <div class="bank-container">
             <!-- BCA -->
             <div class="bank-info">
                 <img src="logo-bca.png" alt="BCA" class="bank-logo">
                 <div class="bank-details">
                     <div class="bank-name">BANK BCA</div>
                     <div class="bank-num">
-                        <span id="bcaAcc">141 046 8570</span>
-                        <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
+                        <span id="bcaAcc" class="num-text">141 046 8570</span>
+                        <button class="btn-copy" onclick="copyText('bcaAcc')">
+                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
                     </div>
-                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 			
@@ -274,10 +236,12 @@
                 <div class="bank-details">
                     <div class="bank-name">BANK BNI</div>
                     <div class="bank-num">
-                        <span id="bniAcc">193 064 5047</span>
-                        <button class="btn-copy" onclick="copyText('bniAcc')">Salin</button>
+                        <span id="bniAcc" class="num-text">193 064 5047</span>
+                        <button class="btn-copy" onclick="copyText('bniAcc')">
+                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
                     </div>
-                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 			
@@ -287,10 +251,12 @@
                 <div class="bank-details">
                     <div class="bank-name">BANK BRI</div>
                     <div class="bank-num">
-                        <span id="briAcc">6421 0101 8930 532</span>
-                        <button class="btn-copy" onclick="copyText('briAcc')">Salin</button>
+                        <span id="briAcc" class="num-text">6421 0101 8930 532</span>
+                        <button class="btn-copy" onclick="copyText('briAcc')">
+                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
                     </div>
-                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 
@@ -300,10 +266,12 @@
                 <div class="bank-details">
                     <div class="bank-name">DANA</div>
                     <div class="bank-num">
-                        <span id="danaAcc">081995164999</span>
-                        <button class="btn-copy" onclick="copyText('danaAcc')">Salin</button>
+                        <span id="danaAcc" class="num-text">081 995 164 999</span>
+                        <button class="btn-copy" onclick="copyText('danaAcc')">
+                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
                     </div>
-                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 
@@ -313,30 +281,31 @@
                 <div class="bank-details">
                     <div class="bank-name">GOPAY</div>
                     <div class="bank-num">
-                        <span id="gopayAcc">081995164999</span>
-                        <button class="btn-copy" onclick="copyText('gopayAcc')">Salin</button>
+                        <span id="gopayAcc" class="num-text">081 995 164 999</span>
+                        <button class="btn-copy" onclick="copyText('gopayAcc')">
+                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            Copy
+                        </button>
                     </div>
-                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
-			
-            <button class="btn-close" onclick="closeModal()">Tutup</button>
+        </div>
+
+        <!-- GAMBAR KONTAK WA -->
+        <div>
+            <img src="kontak.png" alt="Kontak Admin" class="img-kontak">
+        </div>
+
+        <!-- GAMBAR SKYLINK NETWORK -->
+        <div>
+            <img src="skylink.png" alt="Skylink Network" class="img-skylink">
         </div>
     </div>
 
     <script>
-        function openModal() {
-            document.getElementById('payModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('payModal').style.display = 'none';
-        }
-
         function copyText(elementId) {
             var text = document.getElementById(elementId).innerText.replace(/\s+/g, '');
             navigator.clipboard.writeText(text);
-            alert('Nomor rekening/HP berhasil disalin!');
         }
     </script>
 </body>
