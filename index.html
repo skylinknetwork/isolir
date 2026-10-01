@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WiFi Nonaktif - Skylink Network</title>
+    <title>WiFi Isolir</title>
     <style>
         * {
             box-sizing: border-box;
@@ -24,7 +24,7 @@
         /* Container Card Utama */
         .card {
             background: #ffffff;
-            border: 5px solid #ffcc00;
+            border: 4px solid #ffcc00;
             border-radius: 18px;
             padding: 30px 20px;
             width: 100%;
@@ -147,7 +147,6 @@
             gap: 12px;
         }
 
-        /* Styling Slot Logo Gambar Bank */
         .bank-logo {
             width: 45px;
             height: 45px;
@@ -163,9 +162,11 @@
             flex-grow: 1;
         }
 
+        /* Nama Bank: Bold & Biru */
         .bank-name {
             font-size: 12px;
-            color: #666;
+            color: #004a9f;
+            font-weight: bold;
         }
 
         .bank-num {
@@ -176,6 +177,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        /* Nama Pemilik Rekening: Bold & Merah */
+        .owner-name {
+            font-size: 13px;
+            color: #da251d;
+            font-weight: bold;
+            margin-top: 1px;
         }
 
         .btn-copy {
@@ -189,9 +198,10 @@
             font-weight: bold;
         }
 
+        /* Tombol Tutup: Hijau Sedang (#1e824c) */
         .btn-close {
             margin-top: 10px;
-            background: #da251d;
+            background: #1e824c;
             color: #fff;
             width: 100%;
             padding: 10px;
@@ -200,6 +210,11 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-close:hover {
+            background: #196f3d;
         }
     </style>
 </head>
@@ -237,7 +252,6 @@
             
             <!-- BCA -->
             <div class="bank-info">
-                <!-- SLOT GAMBAR LOGO BCA -->
                 <img src="logo-bca.png" alt="BCA" class="bank-logo">
                 <div class="bank-details">
                     <div class="bank-name">BANK BCA</div>
@@ -245,13 +259,12 @@
                         <span id="bcaAcc">141 046 8570</span>
                         <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
                     </div>
-                    <div class="bank-name">Adi Prasetyo Nugroho</div>
+                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 			
             <!-- BNI -->
             <div class="bank-info">
-                <!-- SLOT GAMBAR LOGO BNI -->
                 <img src="logo-bni.png" alt="BNI" class="bank-logo">
                 <div class="bank-details">
                     <div class="bank-name">BANK BNI</div>
@@ -259,24 +272,47 @@
                         <span id="bniAcc">193 064 5047</span>
                         <button class="btn-copy" onclick="copyText('bniAcc')">Salin</button>
                     </div>
-                    <div class="bank-name">Adi Prasetyo Nugroho</div>
+                    <div class="owner-name">Adi Prasetyo Nugroho</div>
+                </div>
+            </div>
+			
+			<div class="bank-info">
+                <img src="logo-bri.png" alt="BRI" class="bank-logo">
+                <div class="bank-details">
+                    <div class="bank-name">BANK BRI</div>
+                    <div class="bank-num">
+                        <span id="bniAcc">6421 0101 8930 532</span>
+                        <button class="btn-copy" onclick="copyText('briAcc')">Salin</button>
+                    </div>
+                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 
             <!-- DANA & GOPAY -->
             <div class="bank-info">
-                <!-- SLOT GAMBAR LOGO E-WALLET -->
-                <img src="logo-ewallet.png" alt="DANA/GOPAY" class="bank-logo">
+                <img src="logo-dana.png" alt="DANA" class="bank-logo">
                 <div class="bank-details">
-                    <div class="bank-name">DANA & GOPAY</div>
+                    <div class="bank-name">DANA</div>
                     <div class="bank-num">
-                        <span id="eWalletAcc">081 995 164 999</span>
-                        <button class="btn-copy" onclick="copyText('eWalletAcc')">Salin</button>
+                        <span id="danaAcc">081995164999</span>
+                        <button class="btn-copy" onclick="copyText('danaAcc')">Salin</button>
                     </div>
-                    <div class="bank-name">Adi Prasetyo Nugroho</div>
+                    <div class="owner-name">Adi Prasetyo Nugroho</div>
                 </div>
             </div>
 
+			<div class="bank-info">
+                <img src="logo-gopay.png" alt="GOPAY" class="bank-logo">
+                <div class="bank-details">
+                    <div class="bank-name">GOPAY</div>
+                    <div class="bank-num">
+                        <span id="gopayAcc">081995164999</span>
+                        <button class="btn-copy" onclick="copyText('gopayAcc')">Salin</button>
+                    </div>
+                    <div class="owner-name">Adi Prasetyo Nugroho</div>
+                </div>
+            </div>
+			
             <button class="btn-close" onclick="closeModal()">Tutup</button>
         </div>
     </div>
