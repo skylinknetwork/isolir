@@ -17,7 +17,7 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* UBAH KE FLEX-START AGAR POSISI BISA DIATUR KE ATAS */
             padding: 20px;
         }
 
@@ -25,10 +25,11 @@
         .card {
             background: #ffffff;
             border: 4px solid #ffcc00;
-            border-radius: 18px;
-            padding: 30px 20px;
+            border-radius: 12px;
+            padding: 30px 10px; /* ANGKA 20px ADALAH JARAK KIRI-KANAN DI DALAM BOX */
             width: 100%;
-            max-width: 380px;
+            max-width: 340px;   /* <--- EDIT ANGKA INI UNTUK MENGUBAH LEBAR BOX (MISAL 340px ATAU 400px) */
+            margin-top: 8vh;    /* <--- EDIT ANGKA INI UNTUK MENGATUR POSISI ATAS-BAWAH (MAKIN KECIL MAKIN KE ATAS) */
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             animation: popIn 0.5s ease-out;
@@ -76,7 +77,7 @@
         .btn-group {
             display: flex;
             flex-direction: column;
-            align-items: center; /* MEMBUAT TOMBOL TETAP PAS DI TENGAH */
+            align-items: center;
             gap: 5px;
             margin-top: 15px;
         }
@@ -86,7 +87,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px 25px; /* PADDING ATAS-BAWAH & KIRI-KANAN */
+            padding: 10px 25px;
             border-radius: 10px;
             font-weight: bold;
             font-size: 15px;
@@ -104,8 +105,8 @@
             background-color: #ff6000;
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(255, 96, 0, 0.3);
-            width: fit-content; /* MEMBUAT LEBAR TOMBOL PAS MENYESUAIKAN TEKS */
-            max-width: 80%;     /* BISA SAYANG UBAH ANGKA INI UNTUK TRIAL & ERROR LEBARNYA */
+            width: fit-content;
+            max-width: 80%;
         }
 
         /* Modal Pop-up Pembayaran */
