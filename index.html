@@ -2,122 +2,310 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport dikunci agar tidak bisa di-zoom in/out -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WiFi Nonaktif</title>
-
+    <title>WiFi Nonaktif - Skylink Network</title>
     <style>
-        body {
-            /* Warna background biru gelap */
-            background-color: #003a9a; 
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #001f54, #003a9a, #0d1c3a);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            /* Posisi card agak ke atas */
-            align-items: flex-start; 
-            min-height: 100vh;
-            /* Menggunakan Font Arial bawaan sistem */
-            font-family: Arial, sans-serif;
-            font-weight: bold;
+            align-items: center;
+            padding: 20px;
         }
-        
-        .container {
-            margin-top: 12vh; 
-            background-color: #ffffff;
-            border: 4px solid #ffcc00; /* Border kuning/emas */
-            border-radius: 12px;
-            padding: 25px 25px; /* Jarak pas antara teks & garis kuning */
-            width: fit-content; /* KUNCI: Kotak otomatis pas mengikuti panjang teks */
-            max-width: 90%; /* Batas aman supaya tidak melebihi layar HP */
+
+        /* Container Card Utama */
+        .card {
+            background: #ffffff;
+            border: 5px solid #ffcc00;
+            border-radius: 18px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 380px;
             text-align: center;
-            box-sizing: border-box;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            animation: popIn 0.5s ease-out;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .title {
-            color: #da251d; /* Warna merah */
-            font-size: 32px; 
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 15px;
+            color: #da251d;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            line-height: 120%; /* Spacing 120% */
-            white-space: nowrap; /* Menjaga judul tetap rapi 1 baris */
         }
-		
-		/* Ukuran logo SVG */
+
         .logo-isolir {
-            width: 90px;
-            height: 90px;
+            width: 75px;
+            height: 75px;
             margin-bottom: 15px;
-            display: inline-block;
-			
-		}
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
 
         .message-text {
-            color: #000000;
-            font-size: 24px;
+            color: #111;
+            font-size: 16px;
             font-weight: bold;
-            line-height: 120%; /* Spacing 120% */
+            line-height: 1.3;
             margin-bottom: 15px;
         }
 
         .highlight-blue {
-            color: #004a9f; /* Teks 'Pembayaran' warna biru */
+            color: #004a9f;
         }
 
-        .contact-text {
-            color: #000000;
-            font-size: 24px;
+        /* Tombol Aksi */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 15px;
+            border-radius: 10px;
             font-weight: bold;
-            line-height: 120%; /* Spacing 120% */
+            font-size: 15px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-wa {
+            background-color: #25d366;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-pay {
+            background-color: #ff6000;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(255, 96, 0, 0.3);
+        }
+
+        .btn-check {
+            background-color: #f0f0f0;
+            color: #333333;
+            border: 1px solid #ccc;
+        }
+
+        /* Modal Pop-up Pembayaran */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px;
+            width: 100%;
+            max-width: 340px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-title {
+            color: #003a9a;
+            font-size: 18px;
             margin-bottom: 15px;
         }
 
-        .phone-number {
-            color: #17823b; /* Warna hijau */
-            font-size: 26px;
+        .bank-info {
+            background: #f4f6f9;
+            border: 1px dashed #004a9f;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .bank-name {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .bank-num {
+            font-size: 18px;
+            color: #111;
             font-weight: bold;
-            margin: 0;
-            letter-spacing: 0.5px;
-            line-height: 120%; /* Spacing 120% */
-            white-space: nowrap;
+            margin: 4px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-copy {
+            background: #004a9f;
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-close {
+            margin-top: 10px;
+            background: #da251d;
+            color: #fff;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Footer Logo Skylink */
+        .footer-logo {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .skylink-svg {
+            width: 180px;
+            height: auto;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="card">
         <h1 class="title">WIFI NONAKTIF !!!</h1>
-<!-- KODE SVG LOGO WIFI NONAKTIF -->
+        
+        <!-- Logo Isolir SVG -->
         <svg class="logo-isolir" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <!-- Lengkungan Sinyal WiFi (Warna Biru) -->
             <path d="M22 38 A38 38 0 0 1 78 38" fill="none" stroke="#003a9a" stroke-width="8" stroke-linecap="round"/>
             <path d="M32 50 A25 25 0 0 1 68 50" fill="none" stroke="#003a9a" stroke-width="8" stroke-linecap="round"/>
             <path d="M42 62 A12 12 0 0 1 58 62" fill="none" stroke="#003a9a" stroke-width="8" stroke-linecap="round"/>
             <circle cx="50" cy="74" r="5" fill="#003a9a"/>
-            
-            <!-- Lingkaran & Garis Silang Larangan (Warna Merah) -->
             <circle cx="50" cy="50" r="42" fill="none" stroke="#da251d" stroke-width="9"/>
             <line x1="20" y1="20" x2="80" y2="80" stroke="#da251d" stroke-width="9"/>
         </svg>
-		<div class="message-text">
+
+        <div class="message-text">
             Mohon lakukan <span class="highlight-blue">Pembayaran</span><br>
-            agar internet kembali normal
+            agar internet kembali normal.
         </div>
+
+        <!-- Group Tombol Interaktif -->
+        <div class="btn-group">
+            <!-- Tombol 1: Cara Pembayaran -->
+            <button class="btn btn-pay" onclick="openModal()">
+                Nomor Rekening Pembayaran
+            </button>
+
+            <!-- Tombol 2: Chat WA Otomatis -->
+            <a class="btn btn-wa" id="waLink" href="https://wa.me/628385839818?text=Halo%20Admin%20Skylink%20Network,%20saya%20mau%20konfirmasi%20pembayaran%20WiFi" target="_blank">
+                Konfirmasi WhatsApp Admin
+            </a>
+
+            <!-- Tombol 3: Cek Ulang Koneksi -->
+            <button class="btn btn-check" onclick="checkConnection()">
+                🔄 Cek Ulang Koneksi Saya
+            </button>
+        </div>
+
+        <!-- Footer Skylink Network -->
         
-        <div class="contact-text">
-            Untuk konfirmasi silahkan<br>
-            hubungi admin kami
-        </div>
-        <img alt="" style="width: 150px; height: auto;" src="data:image/png;base64,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vLDwG/eE8/s3BCkeAAAACXBIWXMAAC4jAAAuIwF4pT92AAADZWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4NCjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iPjxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9InV1aWQ6ZmFmNWJkZDUtYmEzZC0xMWRhLWFkMzEtZDMzZDc1MTgyZjFiIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iPjxkYzpjcmVhdG9yPjxyZGY6U2VxIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PHJkZjpsaT5BZG1pbjwvcmRmOmxpPjwvcmRmOlNlcT4NCgkJCTwvZGM6Y3JlYXRvcj48L3JkZjpEZXNjcmlwdGlvbj48cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj48ZXhpZjpEYXRlVGltZU9yaWdpbmFsPjIwMjYtMTAtMDFUMDg6MTE6MTcuNzY4PC9leGlmOkRhdGVUaW1lT3JpZ2luYWw+PC9yZGY6RGVzY3JpcHRpb24+PHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9InV1aWQ6ZmFmNWJkZDUtYmEzZC0xMWRhLWFkMzEtZDMzZDc1MTgyZjFiIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iPjx4bXA6Q3JlYXRlRGF0ZT4yMDI2LTEwLTAxVDA4OjExOjE3Ljc2ODwveG1wOkNyZWF0ZURhdGU+PC9yZGY6RGVzY3JpcHRpb24+PC9yZGY6UkRGPjwveDp4bXBtZXRhPg0KPD94cGFja2V0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" />
-        <!--
-		<div class="phone-number">
-            ~ 0838 5839 819 ~
-        </div>
-		-->
     </div>
 
+    <!-- POP-UP MODAL PEMBAYARAN -->
+    <div class="modal" id="payModal">
+        <div class="modal-content">
+            <h2 class="modal-title">Info Rekening Pembayaran</h2>
+            
+            <div class="bank-info">
+                <div class="bank-name">BANK BCA</div>
+                <div class="bank-num">
+                    <span id="bcaAcc">141 046 8570</span>
+                    <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
+                </div>
+                <div class="bank-name">Adi Prasetyo Nugroho</div>
+            </div>
+			
+			<div class="bank-info">
+                <div class="bank-name">BANK BNI</div>
+                <div class="bank-num">
+                    <span id="bcaAcc">141 046 8570</span>
+                    <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
+                </div>
+                <div class="bank-name">Adi Prasetyo Nugroho</div>
+            </div>
+
+            <div class="bank-info">
+                <div class="bank-name">DANA & GOPAY</div>
+                <div class="bank-num">
+                    <span id="eWalletAcc">081 995 164 999</span>
+                    <button class="btn-copy" onclick="copyText('eWalletAcc')">Salin</button>
+                </div>
+                <div class="bank-name">Adi Prasetyo Nugroho</div>
+            </div>
+
+            <button class="btn-close" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Buka Pop-up
+        function openModal() {
+            document.getElementById('payModal').style.display = 'flex';
+        }
+
+        // Tutup Pop-up
+        function closeModal() {
+            document.getElementById('payModal').style.display = 'none';
+        }
+
+        // Salin Rekening
+        function copyText(elementId) {
+            var text = document.getElementById(elementId).innerText.replace(/\s+/g, '');
+            navigator.clipboard.writeText(text);
+            alert('Nomor rekening/HP berhasil disalin!');
+        }
+
+        // Cek Ulang Koneksi
+        function checkConnection() {
+            alert('Memeriksa status jaringan... Jika Anda sudah membayar, silakan tunggu 1-3 menit atau restart router WiFi Anda.');
+            window.location.reload();
+        }
+    </script>
 </body>
 </html>
