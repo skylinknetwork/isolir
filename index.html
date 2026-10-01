@@ -17,19 +17,19 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* UBAH KE FLEX-START AGAR POSISI BISA DIATUR KE ATAS */
-            padding: 20px;
+            align-items: flex-start; 
+            padding: 15px;
         }
 
         /* Container Card Utama */
         .card {
             background: #ffffff;
             border: 4px solid #ffcc00;
-            border-radius: 12px;
-            padding: 30px 10px; /* ANGKA 20px ADALAH JARAK KIRI-KANAN DI DALAM BOX */
-            width: 100%;
-            max-width: 340px;   /* <--- EDIT ANGKA INI UNTUK MENGUBAH LEBAR BOX (MISAL 340px ATAU 400px) */
-            margin-top: 8vh;    /* <--- EDIT ANGKA INI UNTUK MENGATUR POSISI ATAS-BAWAH (MAKIN KECIL MAKIN KE ATAS) */
+            border-radius: 18px;
+            padding: 25px 15px;
+            width: 70%;          /* DIATUR AGAR ADA JARAK KIRI-KANAN DI LAYAR HP */
+            max-width: 330px;    /* DIATUR AGAR KOTAK TIDAK TERLALU LEBAR */
+            margin-top: 6vh;     /* POSISI AGAK KE ATAS */
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             animation: popIn 0.5s ease-out;
@@ -42,16 +42,16 @@
 
         .title {
             color: #da251d;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
 
         .logo-isolir {
-            width: 75px;
-            height: 75px;
-            margin-bottom: 15px;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 12px;
             animation: pulse 2s infinite;
         }
 
@@ -63,7 +63,7 @@
 
         .message-text {
             color: #111;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             line-height: 1.3;
             margin-bottom: 15px;
@@ -87,10 +87,10 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px 25px;
+            padding: 10px 20px;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
             text-decoration: none;
             border: none;
             cursor: pointer;
@@ -106,7 +106,7 @@
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(255, 96, 0, 0.3);
             width: fit-content;
-            max-width: 80%;
+            max-width: 90%;
         }
 
         /* Modal Pop-up Pembayaran */
@@ -119,23 +119,23 @@
             justify-content: center;
             align-items: center;
             z-index: 100;
-            padding: 20px;
+            padding: 15px;
         }
 
         .modal-content {
             background: #ffffff;
             border-radius: 14px;
-            padding: 20px;
-            width: 100%;
-            max-width: 360px;
+            padding: 18px 15px;
+            width: 92%;
+            max-width: 340px;
             text-align: center;
             position: relative;
         }
 
         .modal-title {
             color: #003a9a;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 17px;
+            margin-bottom: 12px;
         }
 
         /* Kartu Bank dengan Slot Logo di Kiri */
@@ -143,17 +143,17 @@
             background: #f4f6f9;
             border: 1px dashed #004a9f;
             border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 12px;
+            padding: 8px 10px;
+            margin-bottom: 10px;
             text-align: left;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .bank-logo {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
             flex-shrink: 0;
             background-color: #ffffff;
@@ -168,13 +168,13 @@
 
         /* Nama Bank: Bold & Biru */
         .bank-name {
-            font-size: 12px;
+            font-size: 11px;
             color: #004a9f;
             font-weight: bold;
         }
 
         .bank-num {
-            font-size: 17px;
+            font-size: 15px;
             color: #111;
             font-weight: bold;
             margin: 2px 0;
@@ -185,7 +185,7 @@
 
         /* Nama Pemilik Rekening: Bold & Merah */
         .owner-name {
-            font-size: 13px;
+            font-size: 12px;
             color: #da251d;
             font-weight: bold;
             margin-top: 1px;
@@ -195,8 +195,8 @@
             background: #004a9f;
             color: #fff;
             border: none;
-            padding: 4px 10px;
-            font-size: 12px;
+            padding: 4px 8px;
+            font-size: 11px;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
@@ -204,16 +204,16 @@
 
         /* Tombol Tutup: Hijau Sedang (#1e824c) */
         .btn-close {
-            margin-top: 10px;
+            margin-top: 8px;
             background: #1e824c;
             color: #fff;
             width: 100%;
-            padding: 10px;
+            padding: 9px;
             border-radius: 8px;
             border: none;
             font-weight: bold;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
             transition: background-color 0.2s;
         }
 
