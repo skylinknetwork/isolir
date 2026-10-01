@@ -99,22 +99,10 @@
             transform: scale(0.96);
         }
 
-        .btn-wa {
-            background-color: #25d366;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-        }
-
         .btn-pay {
             background-color: #ff6000;
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(255, 96, 0, 0.3);
-        }
-
-        .btn-check {
-            background-color: #f0f0f0;
-            color: #333333;
-            border: 1px solid #ccc;
         }
 
         /* Modal Pop-up Pembayaran */
@@ -135,7 +123,7 @@
             border-radius: 14px;
             padding: 20px;
             width: 100%;
-            max-width: 340px;
+            max-width: 360px;
             text-align: center;
             position: relative;
         }
@@ -146,13 +134,33 @@
             margin-bottom: 15px;
         }
 
+        /* Kartu Bank dengan Slot Logo di Kiri */
         .bank-info {
             background: #f4f6f9;
             border: 1px dashed #004a9f;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
             text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Styling Slot Logo Gambar Bank */
+        .bank-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            flex-shrink: 0;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        .bank-details {
+            flex-grow: 1;
         }
 
         .bank-name {
@@ -161,10 +169,10 @@
         }
 
         .bank-num {
-            font-size: 18px;
+            font-size: 17px;
             color: #111;
             font-weight: bold;
-            margin: 4px 0;
+            margin: 2px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -174,10 +182,11 @@
             background: #004a9f;
             color: #fff;
             border: none;
-            padding: 4px 8px;
-            font-size: 11px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 12px;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .btn-close {
@@ -190,18 +199,7 @@
             border: none;
             font-weight: bold;
             cursor: pointer;
-        }
-
-        /* Footer Logo Skylink */
-        .footer-logo {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        .skylink-svg {
-            width: 180px;
-            height: auto;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -225,26 +223,11 @@
             agar internet kembali normal.
         </div>
 
-        <!-- Group Tombol Interaktif -->
         <div class="btn-group">
-            <!-- Tombol 1: Cara Pembayaran -->
             <button class="btn btn-pay" onclick="openModal()">
                 Nomor Rekening Pembayaran
             </button>
-
-            <!-- Tombol 2: Chat WA Otomatis -->
-            <a class="btn btn-wa" id="waLink" href="https://wa.me/628385839818?text=Halo%20Admin%20Skylink%20Network,%20saya%20mau%20konfirmasi%20pembayaran%20WiFi" target="_blank">
-                Konfirmasi WhatsApp Admin
-            </a>
-
-            <!-- Tombol 3: Cek Ulang Koneksi -->
-            <button class="btn btn-check" onclick="checkConnection()">
-                🔄 Cek Ulang Koneksi Saya
-            </button>
         </div>
-
-        <!-- Footer Skylink Network -->
-        
     </div>
 
     <!-- POP-UP MODAL PEMBAYARAN -->
@@ -252,31 +235,46 @@
         <div class="modal-content">
             <h2 class="modal-title">Info Rekening Pembayaran</h2>
             
+            <!-- BCA -->
             <div class="bank-info">
-                <div class="bank-name">BANK BCA</div>
-                <div class="bank-num">
-                    <span id="bcaAcc">141 046 8570</span>
-                    <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
+                <!-- SLOT GAMBAR LOGO BCA -->
+                <img src="logo-bca.png" alt="BCA" class="bank-logo">
+                <div class="bank-details">
+                    <div class="bank-name">BANK BCA</div>
+                    <div class="bank-num">
+                        <span id="bcaAcc">141 046 8570</span>
+                        <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
+                    </div>
+                    <div class="bank-name">Adi Prasetyo Nugroho</div>
                 </div>
-                <div class="bank-name">Adi Prasetyo Nugroho</div>
             </div>
 			
-			<div class="bank-info">
-                <div class="bank-name">BANK BNI</div>
-                <div class="bank-num">
-                    <span id="bcaAcc">141 046 8570</span>
-                    <button class="btn-copy" onclick="copyText('bcaAcc')">Salin</button>
+            <!-- BNI -->
+            <div class="bank-info">
+                <!-- SLOT GAMBAR LOGO BNI -->
+                <img src="logo-bni.png" alt="BNI" class="bank-logo">
+                <div class="bank-details">
+                    <div class="bank-name">BANK BNI</div>
+                    <div class="bank-num">
+                        <span id="bniAcc">193 064 5047</span>
+                        <button class="btn-copy" onclick="copyText('bniAcc')">Salin</button>
+                    </div>
+                    <div class="bank-name">Adi Prasetyo Nugroho</div>
                 </div>
-                <div class="bank-name">Adi Prasetyo Nugroho</div>
             </div>
 
+            <!-- DANA & GOPAY -->
             <div class="bank-info">
-                <div class="bank-name">DANA & GOPAY</div>
-                <div class="bank-num">
-                    <span id="eWalletAcc">081 995 164 999</span>
-                    <button class="btn-copy" onclick="copyText('eWalletAcc')">Salin</button>
+                <!-- SLOT GAMBAR LOGO E-WALLET -->
+                <img src="logo-ewallet.png" alt="DANA/GOPAY" class="bank-logo">
+                <div class="bank-details">
+                    <div class="bank-name">DANA & GOPAY</div>
+                    <div class="bank-num">
+                        <span id="eWalletAcc">081 995 164 999</span>
+                        <button class="btn-copy" onclick="copyText('eWalletAcc')">Salin</button>
+                    </div>
+                    <div class="bank-name">Adi Prasetyo Nugroho</div>
                 </div>
-                <div class="bank-name">Adi Prasetyo Nugroho</div>
             </div>
 
             <button class="btn-close" onclick="closeModal()">Tutup</button>
@@ -284,27 +282,18 @@
     </div>
 
     <script>
-        // Buka Pop-up
         function openModal() {
             document.getElementById('payModal').style.display = 'flex';
         }
 
-        // Tutup Pop-up
         function closeModal() {
             document.getElementById('payModal').style.display = 'none';
         }
 
-        // Salin Rekening
         function copyText(elementId) {
             var text = document.getElementById(elementId).innerText.replace(/\s+/g, '');
             navigator.clipboard.writeText(text);
             alert('Nomor rekening/HP berhasil disalin!');
-        }
-
-        // Cek Ulang Koneksi
-        function checkConnection() {
-            alert('Memeriksa status jaringan... Jika Anda sudah membayar, silakan tunggu 1-3 menit atau restart router WiFi Anda.');
-            window.location.reload();
         }
     </script>
 </body>
